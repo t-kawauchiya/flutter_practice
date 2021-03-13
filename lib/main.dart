@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/book_list_page.dart';
 import 'package:flutter_practice/main_model.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Firebase.initializeApp();
     return MaterialApp(
       title: 'Flutter Demo',
       home: ChangeNotifierProvider<MainModel>(
@@ -30,7 +33,10 @@ class MyApp extends StatelessWidget {
                     child: Text('そなたは美しい。'),
                     onPressed: () {
                       // なんかの処理
-                      model.changeYurikoText();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => BookListPage()),
+                      );
                     })
               ]),
             );
